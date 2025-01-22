@@ -1,0 +1,5 @@
+venv
+node-v22.13.1-linux-x64
+cmp
+__pycache__
+node_modules
