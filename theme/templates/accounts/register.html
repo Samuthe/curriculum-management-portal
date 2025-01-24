@@ -1,0 +1,87 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arika Registration Form</title>
+    {% tailwind_css %}
+</head>
+<body>
+  <div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="w-full max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-2xl font-bold text-gray-700 mb-4">Register</h2>
+        
+        <!-- Display success or error messages -->
+        {% if messages %}
+            <div class="mb-4">
+                {% for message in messages %}
+                    <div class="text-red-500 text-sm">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" name="username" value="{{ request.POST.username }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline" required>
+                {% if form.errors.username %}
+                    <p class="text-red-500 text-xs italic">{{ form.errors.username }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">First Name</label>
+                <input type="text" name="first_name" value="{{ request.POST.first_name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline" required>
+                {% if form.errors.first_name %}
+                    <p class="text-red-500 text-xs italic">{{ form.errors.first_name }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
+                <input type="text" name="last_name" value="{{ request.POST.last_name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline" required>
+                {% if form.errors.last_name %}
+                    <p class="text-red-500 text-xs italic">{{ form.errors.last_name }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Date of Birth</label>
+                <input type="date" name="date_of_birth" value="{{ request.POST.date_of_birth }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline" required>
+                {% if form.errors.date_of_birth %}
+                    <p class="text-red-500 text-xs italic">{{ form.errors.date_of_birth }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline" required>
+                {% if form.errors.password %}
+                    <p class="text-red-500 text-xs italic">{{ form.errors.password }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+                <input type="password" name="confirm_password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline" required>
+                {% if form.errors.confirm_password %}
+                    <p class="text-red-500 text-xs italic">{{ form.errors.confirm_password }}</p>
+                {% endif %}
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Register
+                </button>
+                <a href="{% url 'login' %}" class="inline-block align-baseline text-blue-500 hover:text-blue-800">
+                    Already have an account? Login
+                </a>
+            </div>
+        </form>
+    </div>
+  </div>
+</body>
+</html>
+  

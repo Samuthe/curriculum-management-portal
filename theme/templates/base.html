@@ -2,17 +2,87 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <title>Django Tailwind</title>
+		<title>School Curriculum Portal</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		{% tailwind_css %}
+		<style>
+			@keyframes gradientAnimation {
+				0% { background-position: 0% 50%; }
+				50% { background-position: 100% 50%; }
+				100% { background-position: 0% 50%; }
+			}
+
+			.bg-animated {
+				background: linear-gradient(45deg, #6a11cb, #2575fc, #ff7e5f, #feb47b);
+				background-size: 400% 400%;
+				animation: gradientAnimation 15s ease infinite;
+			}
+
+			@keyframes pulse {
+				0% { opacity: 0.5; transform: scale(0.95); }
+				50% { opacity: 1; transform: scale(1); }
+				100% { opacity: 0.5; transform: scale(0.95); }
+			}
+
+			.card:hover {
+				animation: pulse 2s ease-in-out infinite;
+			}
+
+			/* Logo styling */
+			.logo-container {
+				position: absolute;
+				top: 4%;
+				left: 4%;
+				padding: 10px;
+			}
+		</style>
 	</head>
 
-	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
-		<div class="container mx-auto">
-			<section class="flex items-center justify-center h-screen">
-				<h1 class="text-5xl">Django + Tailwind = ❤️</h1>
+	<body class="bg-animated font-serif leading-normal tracking-normal">
+		<div class="container mx-auto px-4">
+			<!-- Logo section -->
+			<div class="logo-container">
+				<a href="#">
+					<img src="{% static 'images/arika.png' %}" alt="Arika Logo" class="h-16 w-auto">
+				</a>
+			</div>
+
+			<section class="flex flex-col items-center justify-center h-screen space-y-12">
+				<h1 class="text-5xl font-extrabold text-white text-center">
+					Welcome to Our Curriculum Portal
+				</h1>
+				<p class="text-lg text-gray-200 text-center max-w-lg">
+					Access personalized learning materials powered by Arika Edtech and improve your skills with interactive resources.
+				</p>
+
+				<div class="flex space-x-4">
+					<a href="{% url 'login' %}" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-all">
+						Login
+					</a>
+					<a href="{% url 'register' %}" class="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-all">
+						Register
+					</a>
+				</div>
+
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-12">
+					<div class="card p-6 bg-white rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Arika-Powered Assessments</h2>
+						<p class="text-gray-600">Engage with quizzes and tests designed by Arika to personalize your learning experience.</p>
+					</div>
+
+					<div class="card p-6 bg-white rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Interactive Video Tutorials</h2>
+						<p class="text-gray-600">Watch tutorials enhanced with Arika-powered recommendations for personalized learning.</p>
+					</div>
+
+					<div class="card p-6 bg-white rounded-lg shadow-xl hover:shadow-2xl transition-transform transform hover:scale-105">
+						<h2 class="text-xl font-semibold text-gray-800 mb-4">Instant Feedback</h2>
+						<p class="text-gray-600">Receive real-time feedback on your progress, powered by intelligent learning systems.</p>
+					</div>
+				</div>
+
 			</section>
 		</div>
 	</body>

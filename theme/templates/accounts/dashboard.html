@@ -1,0 +1,71 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+{% tailwind_css %}
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold">Welcome to Your Dashboard</h1>
+            <p class="mt-1">Access your shared curriculum below:</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Curriculum</h2>
+
+            {% if curriculum %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for item in curriculum %}
+                        <div class="border rounded-lg shadow-sm p-4 bg-gray-50">
+                            <h3 class="text-xl font-semibold text-blue-700">{{ item.title }}</h3>
+                            <p class="mt-2 text-gray-700">{{ item.content }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-gray-500">No curriculum available at the moment. Please check back later.</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Curriculum Management Portal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+{% comment %} {% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% tailwind_css %}
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-800">Welcome to the Curriculum Dashboard</h1>
+            <p class="text-gray-600 mt-4">Access all curriculum materials here.</p>
+        </div>
+    </div>
+</body>
+</html> {% endcomment %}
+
